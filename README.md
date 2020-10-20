@@ -1,5 +1,7 @@
 pair programming: 	
-scripts creeren:- 1 algemeen script voor het installeren van docker, consul en nomad
+scripts creeren:
+
+		- 1 algemeen script voor het installeren van docker, consul en nomad
 
 		- voor elke node apart een configuratie script (provision hcl voor elke client naar de tmp directorie, script erna uitgevooerd door root)												- client1.hcl: we geven hier de naam, de data dir mee, of het een client is, een ip adress met de juiste poort (voor de consul), een pport die zorgt dat er geen collision kan gebeuren met server1 en dangeling afzetten met de dockers om er voor te voorkomen dat ze elkaar proberen te stoppen
 		
