@@ -1,4 +1,7 @@
-pair programming: 	
+Aanpak van de pe:
+Hicham: screen casten tijdens het uitwerken van de PE.
+Tim: Meekijken => extra controle
+
 scripts creeren:
 
 		- 1 algemeen script voor het installeren van docker, consul en nomad
