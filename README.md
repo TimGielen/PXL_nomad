@@ -2,6 +2,7 @@ Aanpak van de pe:
 Hicham: screen casten tijdens het uitwerken van de PE.
 Tim: Meekijken => extra controle
 
+
 scripts creeren:
 
 		- 1 algemeen script voor het installeren van docker, consul en nomad
@@ -12,7 +13,7 @@ scripts creeren:
 		
                - server.hcl : we geven hier de naam, de data dir mee, of het een server is, rpc geven we een ip mee.
 		
-               - configuration_client1.sh: creeën van een dir in tmp die client1 noemt, verplaatesn van de hcl file van tmp naar root, gebruik van het nohup commando (dit zorgt er voor dat het commando in de achtergrond blijft runnen en er op deze manier geen nieuwe shell moet worden opgestart) van uit het configuratie van de /root/client1.hcl en daarna wordt er op enter geduwd van in de console
+               - configuration_client1.sh: creeën van een dir in tmp die client1 noemt, verplaatesn van de hcl file van tmp naar root, gebruik van het nohup commando (dit zorgt er voor dat het commando in de achtergrond blijft runnen en er op deze manier geen nieuwe shell moet worden opgestart https://www.computerhope.com/unix/unohup.htm) van uit het configuratie van de /root/client1.hcl en daarna wordt er op enter geduwd van in de console
 		
                - configuration_client2.sh: idem als configuration_client1 maar alles in met client1 wordt client2
 		
