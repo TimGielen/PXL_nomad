@@ -1,0 +1,17 @@
+---
+- name: playbook for the servers
+  hosts: servers
+  become: yes
+
+  roles:
+    - role: software/docker_ce
+
+- name: playbook for the clients
+  hosts: clients
+  become: yes
+
+  roles:
+    - role: software/docker_ce
+
+
+

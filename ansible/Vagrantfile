@@ -1,0 +1,39 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+VAGRANTFILE_API_VERSION = "2"
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+  config.vm.box = "centos/7"
+  #virtualbox__intnet: "mynetwork"
+  config.ssh.insert_key = false
+  config.ssh.private_key_path = "~/.vagrant.d/insecure_private_key"
+
+  config.vm.define "nomadclient1" do |nomadclient1|
+    nomadclient1.vm.hostname = "nomadclient1"
+    nomadclient1.vm.network "private_network", ip: "192.168.1.4"
+  end
+  config.vm.define "nomadclient2" do |nomadclient2|
+    nomadclient2.vm.hostname = "nomadclient2"
+    nomadclient2.vm.network "private_network", ip: "192.168.1.5"
+  end
+
+  config.vm.define "nomadserver" do |nomadserver|
+    nomadserver.vm.hostname = "nomadserver"
+    nomadserver.vm.network "private_network", ip: "192.168.1.3"
+    nomadserver.vm.provision "ansible" do |ansible|      
+    ansible.config_file = "ansible/ansible.cfg"
+    ansible.playbook = "ansible/plays/servers.yml"
+    ansible.groups = {
+      "servers" => ["nomadserver"],
+      "clients" => ["nomadclient1","nomadclient2"]
+#     "servers:vars" => {"crond__content" => "servers_value"}
+    }    
+    ansible.host_vars = {
+#    "server" => {"crond__content" => "server_value"}
+    }
+#      ansible.verbose = '-vvv'
+    ansible.limit = 'all'
+    end
+    nomadserver.vm.network "forwarded_port", guest: 8500, host: 8500
+  end
+
+end
