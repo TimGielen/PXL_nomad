@@ -4,10 +4,13 @@
     name: yum-utils
     state: latest
 
-- name: Install the nomad rpm from a remote repo
-  get_url: 
-    url: https://rpm.releases.hashicorp.com/RHEL/hashicorp.repo
-    dest: /ect/yum.repos.d/hashicorp.repo
+#- name: Install the nomad rpm from a remote repo
+#  get_url: 
+#    url: https://rpm.releases.hashicorp.com/RHEL/hashicorp.repo
+#    dest: /ect/yum.repos.d/hashicorp.repo
+
+- name: Install the nomad rpm from a remote repo (de heel lelijke manier)
+  command: yum-config-manager --add-repo https://rpm.releases.hashicorp.com/RHEL/hashicorp.repo
 
 - name: Install a list of packages
   yum:
