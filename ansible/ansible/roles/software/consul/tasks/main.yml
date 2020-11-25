@@ -1,0 +1,17 @@
+---
+- name: Install yum utils
+  yum:
+    name: yum-utils
+    state: latest
+
+- name: Install the consule rpm from a remote repo
+  get_url: 
+    url: https://rpm.releases.hashicorp.com/RHEL/hashicorp.repo
+    dest: /ect/yum.repos.d/hashicorp.repo
+
+- name: Install a list of packages
+  yum:
+    name: consul
+    state: latest
+  
+

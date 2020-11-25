@@ -1,0 +1,15 @@
+---
+- hosts: all
+  become: true
+  tasks:
+    - name: Install the consule and nomad rpm from a remote repo
+      yum:
+        name: https://rpm.releases.hashicorp.com/RHEL/hashicorp.repo
+        state: present
+
+    - name: Install a list of packages
+      yum:
+       name:
+       - consul
+      state: present
+    

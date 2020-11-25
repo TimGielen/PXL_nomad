@@ -5,6 +5,10 @@
 
   roles:
     - role: software/docker_ce
+    - role: software/consul
+    - role: software/nomad
+
+    
 
 - name: playbook for the clients
   hosts: clients
@@ -12,6 +16,8 @@
 
   roles:
     - role: software/docker_ce
+    - role: software/consul
+    - role: software/nomad
 
 
 
