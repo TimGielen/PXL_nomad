@@ -1,5 +1,10 @@
 ---
-- name: Restart consul
+- name: Enable consul
   service:
     name: consul
-    state: restarted
+    state: enabled
+
+- name: Start consul
+  service:
+    name: consul
+    state: started

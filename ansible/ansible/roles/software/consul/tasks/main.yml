@@ -1,4 +1,5 @@
 ---
+
 - name: Install yum utils
   yum:
     name: yum-utils
@@ -13,5 +14,32 @@
   yum:
     name: consul
     state: latest
-  
+
+- name: "server is true uncomment"
+  replace: 
+    path: /etc/consul.d/consul.hcl
+    regexp: "#server = true"
+    replace: "server = true"
+
+- name: "bootstrap expect uncomment"
+  replace: 
+    path: /etc/consul.d/consul.hcl
+    regexp: "#bootstrap_expect=3"
+    replace: "bootstrap_expect=1"
+
+- name: "bind addr to ip"
+  lineinfile:
+    path: /etc/consul.d/consul.hcl
+    line: bind_addr = "${ansible_private_network.ipv4.address}"
+
+- name: Enable consul
+  service:
+    name: consul
+    enabled: yes
+
+- name: Start consul
+  service:
+    name: consul
+    state: started
+    
 
