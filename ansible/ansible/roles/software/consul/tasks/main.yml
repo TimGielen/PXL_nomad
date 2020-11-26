@@ -4,21 +4,12 @@
     name: yum-utils
     state: latest
 
-#- name: Install the consule rpm from a remote repo
-#  yum:
-#    name: https://rpm.releases.hashicorp.com/RHEL/hashicorp.repo
-#    state: present
+- name: Add repository hashicop repo
+  get_url:
+    url: https://rpm.releases.hashicorp.com/RHEL/hashicorp.repo
+    dest: /etc/yum.repos.d/hashicorp.repo
 
-- name: Install the consule rpm from a remote repo (de heel lelijke manier)
-  command: yum-config-manager --add-repo https://rpm.releases.hashicorp.com/RHEL/hashicorp.repo
-
-#- name: Add repository
-#  yum_repository:
-#    name: Hashicorp Stable - $basearch
-#    baseurl: https://rpm.releases.hashicorp.com/RHEL/$releasever/$basearch/stable
-#    enabled: 1  
-
-- name: Install a list of packages
+- name: Install consul
   yum:
     name: consul
     state: latest
