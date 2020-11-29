@@ -1,45 +1,62 @@
 ---
+    - name: Install yum utils
+      yum:
+        name: yum-utils
+        state: latest
 
-- name: Install yum utils
-  yum:
-    name: yum-utils
-    state: latest
+    - name: Add repository hashicop repo
+      get_url:
+        url: https://rpm.releases.hashicorp.com/RHEL/hashicorp.repo
+        dest: /etc/yum.repos.d/hashicorp.repo
 
-- name: Add repository hashicop repo
-  get_url:
-    url: https://rpm.releases.hashicorp.com/RHEL/hashicorp.repo
-    dest: /etc/yum.repos.d/hashicorp.repo
+    - name: Install consul
+      yum:
+        name: consul
+        state: latest
+  
 
-- name: Install consul
-  yum:
-    name: consul
-    state: latest
+    - name: "server is true uncomment"
+      replace: 
+        path: /etc/consul.d/consul.hcl
+        regexp: "#server = true"
+        replace: "server = true"
 
-- name: "server is true uncomment"
-  replace: 
-    path: /etc/consul.d/consul.hcl
-    regexp: "#server = true"
-    replace: "server = true"
+    - name: "bootstrap expect uncomment"
+      replace: 
+        path: /etc/consul.d/consul.hcl
+        regexp: "#bootstrap_expect=3"
+        replace: "bootstrap_expect=1"
 
-- name: "bootstrap expect uncomment"
-  replace: 
-    path: /etc/consul.d/consul.hcl
-    regexp: "#bootstrap_expect=3"
-    replace: "bootstrap_expect=1"
+    - name: "bind addr to ip"
+      lineinfile:
+        path: /etc/consul.d/consul.hcl
+        line: bind_addr = "{ansible_private_network.ipv4.address}"
 
-- name: "bind addr to ip"
-  lineinfile:
-    path: /etc/consul.d/consul.hcl
-    line: bind_addr = "${ansible_private_network.ipv4.address}"
+   
+    - name: for the client consul        
+      lineinfile:
+        path: /etc/consul.d/consul.hcl
+        line: retry_join = "192.168.10.3"
+      when: ansible_facts['hosts'] == clients  
 
-- name: Enable consul
-  service:
-    name: consul
-    enabled: yes
 
-- name: Start consul
-  service:
-    name: consul
-    state: started
+    - name: Start_consul
+      service:
+        name: consul
+        state: started
+
+    - name: Enable_consul
+      service:
+        name: consul
+        enabled: yes
+
+      
     
+
+
+  
+      
+
+
+  
 
