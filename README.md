@@ -2,6 +2,7 @@ Aanpak van PE2: (werk verdeeld)
 
 Hicham:
   - Vagrantfile
+  - yum utils role
   - Docker role
   - Nomad role
   
