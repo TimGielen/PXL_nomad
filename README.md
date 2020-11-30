@@ -1,4 +1,19 @@
-Aanpak van de pe:
+Aanpak van PE2: (werk verdeeld)
+
+Hicham:
+  - Vagrantfile
+  - Docker role
+  - Nomad role
+  
+Tim:
+  - Consul role
+
+
+
+
+
+
+Aanpak van PE1:
 Hicham: screen casten tijdens het uitwerken van de PE.
 Tim: Meekijken => extra controle
 
