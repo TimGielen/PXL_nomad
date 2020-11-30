@@ -1,0 +1,6 @@
+---
+nomad_config_dir: "/etc/nomad.d"
+server_data_dir: "/opt/nomad/server"
+client_data_dir: "/opt/nomad/client"
+ip_address: "{{ansible_eth1.ipv4.address}}"
+server_address: "{{ hostvars[groups['servers'][0]]['ansible_eth1']['ipv4']['address'] }}"

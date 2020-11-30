@@ -1,23 +1,27 @@
 ---
 - name: playbook for the servers
   hosts: servers
-  become: yes
-
+  become: true
+  vars:
+    is_server: true
+    is_client: false
   roles:
+    - role: software/yum-utils
     - role: software/docker_ce
-    - role: software/consul
     - role: software/nomad
-
-    
+    - role: software/consul
 
 - name: playbook for the clients
   hosts: clients
-  become: yes
-
+  become: true
+  vars:
+    is_server: false
+    is_client: true
   roles:
+    - role: software/yum-utils
     - role: software/docker_ce
-    - role: software/consul
     - role: software/nomad
+    - role: software/consul
 
 
 

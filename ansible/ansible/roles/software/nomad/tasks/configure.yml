@@ -1,0 +1,25 @@
+---
+- name: create directories if they don't exist
+  file:
+    path: "{{ item }}"
+    state: directory
+  loop:
+    - "{{ nomad_config_dir }}"
+    - "{{ server_data_dir }}"
+    - "{{ client_data_dir }}"
+
+- name: Nomad server configuration
+  template:
+    src: conf/server.hcl
+    dest: "{{ nomad_config_dir }}/nomad.hcl"
+  when:
+    - is_server
+  notify: restart nomad
+
+- name: Nomad client configuration
+  template:
+    src: conf/client.hcl
+    dest: "{{ nomad_config_dir }}/nomad.hcl"
+  when:
+    - is_client
+  notify: restart nomad

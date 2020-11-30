@@ -1,47 +1,5 @@
 ---
-- name: Install yum utils
-  yum:
-    name: yum-utils
-    state: latest
+- include: install.yml
 
-- name: Add repository hashicop repo
-  get_url:
-    url: https://rpm.releases.hashicorp.com/RHEL/hashicorp.repo
-    dest: /etc/yum.repos.d/hashicorp.repo
-
-- name: Install nomad
-  yum:
-    name: nomad
-    state: latest
-
-#- name: remove client from sever
-#  replace:
-#    path: /etc/nomad.d/nomad.hcl
-#    regexp: 
-#       line: "{{ item }}"
-#       with_items:
-#       - 'client {'
-#       - 'enabled = true'
-#       - 'servers = ["127.0.0.1:4646"]'
-#       - '}'
-#    replace:
-#       line: "{{ item }}"
-#       with_items:
-#       - '#client {'
-#       - '#enabled = true'
-#       - '#servers = ["127.0.0.1:4646"]'
-#       - '#}'
-
-
-- name: advertise
-  lineinfile:
-    path: /etc/nomad.d/nomad.hcl
-    line: "{{ item }}"
-  with_items:
-      -  'advertise {'
-      -  ' rpc  = "192.168.1.3"'
-      -  ' serf = "192.168.1.3"'
-      -  ' http = "192.168.1.3"'
-      -  '}'
-  
+- include: configure.yml
 

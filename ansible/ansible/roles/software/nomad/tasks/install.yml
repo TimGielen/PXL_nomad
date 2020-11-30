@@ -1,0 +1,15 @@
+---
+- name: Add Hashicorp repo
+  get_url:
+    url: https://rpm.releases.hashicorp.com/RHEL/hashicorp.repo
+    dest: /etc/yum.repos.d/hashicorp.repo
+
+- name: Install Nomad
+  yum:
+    state: latest 
+    name: nomad
+
+- name: Enable Nomad
+  service:
+    name: nomad
+    enabled: yes
