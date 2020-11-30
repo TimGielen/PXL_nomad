@@ -1,4 +1,4 @@
-Aanpak van PE2: (werk verdeeld)
+Aanpak van PE2:
 
 Hicham:
   - Vagrantfile
