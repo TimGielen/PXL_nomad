@@ -19,7 +19,7 @@
         src: consul.hcl.j2
         dest: /etc/consul.d/consul.hcl
       notify: 
-         - Start_consul
+         - Restart_consul
          - Enable_consul
 
 

@@ -4,10 +4,10 @@
     name: consul
     enabled: yes
 
-- name: Start_consul
+- name: Restart_consul
   service:
     name: consul
-    state: started
+    state: restarted
 
       
 
