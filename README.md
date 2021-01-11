@@ -1,3 +1,7 @@
+Aanpak van PE3:
+Pair programming
+
+
 Aanpak van PE2:
 
 Hicham:
