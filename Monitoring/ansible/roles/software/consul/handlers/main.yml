@@ -1,0 +1,13 @@
+
+- name: Enable_consul
+  service:
+    name: consul
+    enabled: yes
+
+- name: Restart_consul
+  service:
+    name: consul
+    state: restarted
+
+      
+

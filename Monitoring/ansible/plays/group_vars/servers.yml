@@ -1,0 +1,1 @@
+consul_bind_addr: "bind_addr = \"{{ansible_eth1.ipv4.address}}\""

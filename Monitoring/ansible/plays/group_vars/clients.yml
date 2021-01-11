@@ -1,0 +1,4 @@
+consul_retry_join: "retry_join = [\"192.168.1.3\"]"
+consul_server_status: "#server = false"
+consul_bootstrap_status: "#bootstrap_expect=1"
+consul_bind_addr: "bind_addr = \"{{ansible_eth1.ipv4.address}}\""

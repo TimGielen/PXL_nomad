@@ -1,0 +1,32 @@
+---
+    - name: Install yum utils
+      yum:
+        name: yum-utils
+        state: latest
+
+    - name: Add repository hashicop repo
+      get_url:
+        url: https://rpm.releases.hashicorp.com/RHEL/hashicorp.repo
+        dest: /etc/yum.repos.d/hashicorp.repo
+
+    - name: Install consul
+      yum:
+        name: consul
+        state: latest
+     
+    - name: use template for consul.hcl
+      template:
+        src: consul.hcl.j2
+        dest: /etc/consul.d/consul.hcl
+      notify: 
+         - Restart_consul
+         - Enable_consul
+
+
+
+  
+      
+
+
+  
+
